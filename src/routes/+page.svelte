@@ -1,6 +1,6 @@
 <script lang="ts">
 	// This is a minimal reproduction of a state object I used
-	// while developing my project in Svelte 5:
+	// while developing a project in Svelte 5:
 	const strat = $state({
 		steps: [
 			{
@@ -9,8 +9,9 @@
 						id: '1',
 						fromStep: 0
 					}
-					// The issue is the same when there are multiple players:
-					// All player objects get "synced".
+					// For demonstration purposes, I'm only using one player object in each step.
+					// The issue is the same when there are multiple players, though:
+					// All objects in the array get copied over.
 				],
 				stickies: [
 					{
@@ -54,7 +55,7 @@
 	});
 
 	// Whenever an active step is set, the "origin step"'s player object
-	// becomes the identical one to that of the step being activated.
+	// gets overwritten by the one from the the step being activated.
 	function setActiveStep(index: number) {
 		view.activeStep = index;
 	}
